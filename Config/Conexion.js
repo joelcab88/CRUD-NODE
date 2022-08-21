@@ -1,46 +1,23 @@
 const SQLCONEXION = require("mssql");
 
-const ConnectSQL = new SQLCONEXION.ConnectionPool({
+const ConnectSQL = {
+  user: "Joe1997_SQLLogin_1",
+  password: "z4tcfq1oyt",
   database: "Biblioteca",
-  server: "LAPTOP-147FCBJT",
-  driver: "msnodesqlv8",
+  server: "Biblioteca.mssql.somee.com",
   options: {
-    trustedConnection: true,
+    encrypt: false,
+    synchronize: true,
+    trustServerCertificate: true,
   },
-});
+};
 
-let conn = SQLCONEXION.connect(ConnectSQL, (err) => {
-  console.log(
-    !err
-      ? "Conexión establecida con el servidor de BD."
-      : "Ha ocurrido un error al intentar establecer la conexión con el sercvidor de BD."
-  );
-});
+SQLCONEXION.connect(ConnectSQL)
+  .then(() => {
+    console.log("Connected");
+  })
+  .catch((err) => {
+    console.dir(err);
+  });
 
-module.exports = conn;
-
-// const conn = async () => {
-//   let configureSQL = await SQLCONEXION.connect(ConnectSQL, (err) => {
-//     console.log(
-//       !err
-//         ? "Conexión establecida con el servidor de BD."
-//         : "Ha ocurrido un error al intentar establecer la conexión con el sercvidor de BD."
-//     );
-//   });
-
-//   let querySQL = await configureSQL.request().query("SELECT * FROM libros");
-//   return querySQL;
-// };
-
-//module.exports = conn;
-
-// ConnectSQL.connect((err) => {
-//   console.log(err);
-//   console.log(
-//     !err
-//       ? "Conexión establecida con el servidor de BD."
-//       : "Ha ocurrido un error al intentar establecer la conexión con el sercvidor de BD."
-//   );
-// });
-
-//module.exports = ConnectSQL;
+module.exports = SQLCONEXION;
