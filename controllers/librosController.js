@@ -5,10 +5,9 @@ module.exports = {
    * @param {*} req Solicitud
    * @param {*} res Respuesta
    */
-  index: (req, res) => {
-    // connect.query("SELECT * FROM Libros", (err,datos) =>{
-    //     console.log(datos);
-    // });
+  index: async (req, res) => {
+    const query = await connect.query('SELECT * FROM Libros');
+    console.dir(query)
     res.render("libros/index");
   },
 };
