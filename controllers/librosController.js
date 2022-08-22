@@ -6,8 +6,8 @@ module.exports = {
    * @param {*} res Respuesta
    */
   index: async (req, res) => {
-    const query = await connect.query('SELECT * FROM Libros');
-    console.dir(query)
+    const test = await new connect.Request().execute('dbo.st_SelLibros')
+    console.dir(test);
     res.render("libros/index");
   },
 };
