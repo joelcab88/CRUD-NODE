@@ -1,4 +1,5 @@
 var connect = require("../Config/Conexion");
+var model = require("../Model/libro");
 module.exports = {
   /**
    * Solicita la ruta de libros.
@@ -6,8 +7,7 @@ module.exports = {
    * @param {*} res Respuesta
    */
   index: async (req, res) => {
-    const test = await new connect.Request().execute('dbo.st_SelLibros')
-    console.dir(test);
-    res.render("libros/index");
+    const libro = await model.ObtieneLibros(connect);
+    res.render("libros/index", {books :libro});
   },
 };
