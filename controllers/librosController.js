@@ -14,9 +14,10 @@ module.exports = {
    * Inserta un nuevo libro en la base de datos.
    * @param {*} req Solicitud
    * @param {*} res Respuesta
-   * @returns 
+   * @returns
    */
-  agregaLibro: (req, res) => {
-    return 0;
+  agregaLibro: async (req, res) => {
+    await model.CreaLibro(connect, req.body);
+    res.redirect("/libros");
   },
 };

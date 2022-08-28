@@ -11,7 +11,7 @@ module.exports = {
         return data.recordset; //Conjunto de registros del SP.
       })
       .catch((err) => {
-        console.log("Mensaje de error: " + err.message);
+        console.log("Error: " + err.message);
       });
   },
   /**
@@ -19,7 +19,17 @@ module.exports = {
    * @param {*} conexion_ conexión a base de datos.
    * @returns
    */
-  CreaLibro: (conexion_) => {
-    return 0;
+  CreaLibro: (conexion_, datos) => {
+    console.log(datos);
+    return new conexion_.Request()
+      .input("NombreLibro", conexion_.VarChar(2500), datos.nombrelibro)
+      .input("Imagen", conexion_.VarChar(2500), datos.archivo)
+      .execute("dbo.st_InsLibros")
+      .then((data) => {
+        return "Se ha insertado un nuevo registro con éxito.";
+      })
+      .catch((err) => {
+        console.log("Error: " + err.message);
+      });
   },
 };
