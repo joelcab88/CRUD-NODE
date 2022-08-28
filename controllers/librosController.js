@@ -8,6 +8,15 @@ module.exports = {
    */
   index: async (req, res) => {
     const libro = await model.ObtieneLibros(connect);
-    res.render("libros/index", {books :libro});
+    res.render("libros/index", { books: libro });
+  },
+  /**
+   * Inserta un nuevo libro en la base de datos.
+   * @param {*} req Solicitud
+   * @param {*} res Respuesta
+   * @returns 
+   */
+  agregaLibro: (req, res) => {
+    return 0;
   },
 };
