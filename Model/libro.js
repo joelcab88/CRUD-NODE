@@ -19,11 +19,11 @@ module.exports = {
    * @param {*} conexion_ conexión a base de datos.
    * @returns
    */
-  CreaLibro: (conexion_, datos) => {
+  CreaLibro: (conexion_, datos, archivo) => {
     console.log(datos);
     return new conexion_.Request()
       .input("NombreLibro", conexion_.VarChar(2500), datos.nombrelibro)
-      .input("Imagen", conexion_.VarChar(2500), datos.archivo)
+      .input("Imagen", conexion_.VarChar(2500), archivo.filename)
       .execute("dbo.st_InsLibros")
       .then((data) => {
         return "Se ha insertado un nuevo registro con éxito.";

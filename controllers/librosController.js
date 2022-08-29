@@ -17,7 +17,8 @@ module.exports = {
    * @returns
    */
   agregaLibro: async (req, res) => {
-    await model.CreaLibro(connect, req.body);
+    console.log(req.file.filename);
+    await model.CreaLibro(connect, req.body, req.file);
     res.redirect("/libros");
   },
 };
